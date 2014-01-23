@@ -14,7 +14,6 @@ namespace bootstrap_form_builder;
 class checkboxes_field extends radio_field {
  public function render()
  {
-  require_once 'checkbox_field.php';
   $result = '';
 
   foreach ($this->get_items() as $value => $caption)

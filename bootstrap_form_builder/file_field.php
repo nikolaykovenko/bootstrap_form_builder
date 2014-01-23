@@ -27,7 +27,6 @@ class file_field extends a_standard_field {
   $value = $this->get_value();
   if (!empty($value))
   {
-   require_once 'checkbox_field.php';
    $checkbox = new checkbox_field($this->get_name().'_delete');
    $field = new html_field('['.$this->get_filename().'] '.$checkbox->add_attr('title', 'Удалить')->render());
    $result = ' '.$field->render();

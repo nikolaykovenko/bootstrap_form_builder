@@ -17,13 +17,8 @@ namespace bootstrap_form_builder;
 class form_factory {
  public function __construct()
  {
-  $this->require_class(__NAMESPACE__.'\a_html_element');
-  $this->require_class(__NAMESPACE__.'\a_form');
-  $this->require_class(__NAMESPACE__.'\a_field');
-  $this->require_class(__NAMESPACE__.'\a_control_field');
-  $this->require_class(__NAMESPACE__.'\a_standard_field');
-  $this->require_class(__NAMESPACE__.'\a_multi_field');
-  $this->require_class(__NAMESPACE__.'\a_checkbox_field');
+  require_once 'auto_loader.php';
+  $loader = new auto_loader();
  }
 
  /**
@@ -38,11 +33,7 @@ class form_factory {
  public function get_form($type = 'simple', $post = null, $name = 'main', $on_submit = null)
  {
   $class_name = __NAMESPACE__.'\\'.$type.'_form';
-  if ($this->require_class($class_name))
-  {
-   $object = new $class_name($post, $name, $on_submit);
-  }
-  else throw new \Exception('Оъект типа '.$type.' не существует');
+  $object = new $class_name($post, $name, $on_submit);
   
   return $object;
  }
@@ -56,33 +47,12 @@ class form_factory {
  public function get_field($type)
  {
   $class_name = __NAMESPACE__.'\\'.$type.'_field';
-
-  if ($this->require_class($class_name))
-  {
-   $args = func_get_args();
-   array_shift($args);
-   $class = new \ReflectionClass($class_name);
-   $object = $class->newInstanceArgs($args);
-  }
-  else throw new \Exception('Оъект типа '.$type.' не существует');
-
+  
+  $args = func_get_args();
+  array_shift($args);
+  $class = new \ReflectionClass($class_name);
+  $object = $class->newInstanceArgs($args);
   
   return $object;
- }
-
-
- /**
-  * Проверяет существования класса и подключает в случае возможности. 
-  * @param string $class Название класса, которое нужно проверить на существование (формы или элемента формы)
-  * @return bool Возвращает true в случае существование, false - отсутствия.
-  */
- protected function require_class($class)
- {
-  if (file_exists($file = '../'.str_replace('\\', '/', $class).'.php'))
-  {
-   require_once $file;
-   if (class_exists($class)) return TRUE; else return FALSE;
-  }
-  else return FALSE;
  }
 }

@@ -50,7 +50,6 @@ class image_file_field extends file_field {
   if (!empty($value))
   {
 //   Нужно доработать ресайз
-   require_once 'image_field.php';
    $image = new image_field($this->get_dir().$value);
    $result = ' '.$image->render();
   }
