@@ -1,6 +1,6 @@
 <?php
 /**
- * @package default
+ * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 16.01.14
  */

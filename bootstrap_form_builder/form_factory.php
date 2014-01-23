@@ -22,6 +22,8 @@ class form_factory {
   $this->require_class(__NAMESPACE__.'\a_field');
   $this->require_class(__NAMESPACE__.'\a_control_field');
   $this->require_class(__NAMESPACE__.'\a_standard_field');
+  $this->require_class(__NAMESPACE__.'\a_multi_field');
+  $this->require_class(__NAMESPACE__.'\a_checkbox_field');
  }
 
  /**

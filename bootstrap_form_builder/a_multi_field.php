@@ -1,0 +1,158 @@
+<?php
+/**
+ * @package bootstrap_form_builder
+ * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
+ * @date 21.01.14
+ */
+
+namespace bootstrap_form_builder;
+
+/**
+ * Класс для мульти-инпутов. (select, checkboxes, radio-buttons)
+ * @package bootstrap_form_builder
+ */
+abstract class a_multi_field extends a_control_field {
+ /**
+  * @var array ассоциативный массив элементов array(value1 => caption1, value2 => caption2, ... ) 
+  */
+ protected $items_array = array();
+
+ /**
+  * @var array массив выбраных элементов array(value1, value2, ...)
+  */
+ protected $selected_values = array();
+ 
+ public function __construct($name = null, $label = null, $items_array = array(), $selected_values = array())
+ {
+  parent::__construct($name, $label);
+  $this->add_items($items_array);
+  $this->add_selected_values($selected_values);
+ }
+
+ /**
+  * Добавляет новые элементы
+  * 
+  * Параметр может быть:
+  * 1. Строкой; Тогда value = 1, caption = $value
+  * 2. Массивом - array(value1=>caption1, value2=>caption2, ...)
+  * 3. Двувымерным ассоциативным массивом с индексами value, caption, selected - array(array('value'=>$value, 'caption'=>$caption [, 'selected'=>$selected] ), ... );
+  * 4. Двувымерным массивом с индексами 0, 1, 2 - array(array($value, $caption [, $selected] ), ... );
+  * 
+  * @param array|string $items
+  * @return $this
+  */
+ public function add_items($items)
+ {
+  if (!empty($items))
+  {
+   if (is_string($items)) $this->add_formatted_item(1, $items);
+   elseif (is_array($items))
+   {
+    foreach ($items as $value => $item)
+    {
+     if (is_array($item))
+     {
+      if (array_key_exists('value', $item) and array_key_exists('caption', $item))
+      {
+       $this->add_formatted_item($item['value'], $item['caption']);
+       if (array_key_exists('selected', $item)) $this->select_value($item['value']);
+      }
+      elseif (array_key_exists(0, $item) and array_key_exists(1, $item))
+      {
+       $this->add_formatted_item($item[0], $item[1]);
+       if (array_key_exists(2, $item)) $this->select_value($item[1]);
+      }
+     }
+     elseif ((!empty($value) or $value === 0) and !empty($item)) $this->add_formatted_item($value, $item);
+    }
+   }
+  }
+  
+  return $this;
+ }
+
+ /**
+  * Помечает элементы как выбранные
+  * @param array|string $selected
+  * @return $this
+  */
+ public function add_selected_values($selected)
+ {
+  if (!empty($selected))
+  {
+   if (is_string($selected)) $this->select_value($selected);
+   elseif (is_array($selected)) foreach ($selected as $value) $this->select_value($value);
+  }
+  
+  return $this;
+ }
+
+ /**
+  * Удаляет переданные элементы
+  * @param array|string $selected
+  * @return $this
+  */
+ public function remove_selected_values($selected)
+ {
+  if (!empty($selected))
+  {
+   if (is_string($selected)) $this->unselect_value($selected);
+   elseif (is_array($selected)) foreach ($selected as $value) $this->unselect_value($value);
+  }
+  return $this;
+ }
+
+
+ /**
+  * Возвращает массив элементов
+  * @return array
+  */
+ protected function get_items()
+ {
+  return $this->items_array;
+ }
+
+ /**
+  * Проверка, выбран ли элемент $value
+  * @param $value
+  * @return bool
+  */
+ protected function is_selected($value)
+ {
+  return in_array($value, $this->selected_values);
+ }
+
+ /**
+  * Добавляет правильно отформатированый элемент
+  * @param string $value
+  * @param string $caption
+  * @return $this
+  */
+ private function add_formatted_item($value, $caption)
+ {
+  $this->items_array[$value] = $caption;
+  return $this;
+ }
+
+ /**
+  * Помечает элемент $value как выбраный
+  * @param string $value
+  * @return $this
+  */
+ private function select_value($value)
+ {
+  if (!empty($value) and in_array($value, $this->selected_values) === FALSE) $this->selected_values[] = $value;
+  return $this;
+ }
+
+ /**
+  * Помечает элемент $value как выбраный
+  * @param string $value
+  * @return $this
+  */
+ private function unselect_value($value)
+ {
+  if (!empty($value) and in_array($value, $this->selected_values) !== FALSE) unset($this->selected_values[$value]);
+  return $this;
+ }
+}

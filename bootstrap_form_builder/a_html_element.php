@@ -1,6 +1,6 @@
 <?php
 /**
- * @package default
+ * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 16.01.14
  */
@@ -130,7 +130,7 @@ abstract class a_html_element {
   * Возвращает полную строку class="..." в случае, если заданы классы элемента, иначе - пустую строку.
   * @return string
   */
- private function get_classes_html()
+ protected function get_classes_html()
  {
   $result = implode(' ', $this->class_array);
   if (!empty($result)) $result = ' class="'.htmlspecialchars($result).'"';

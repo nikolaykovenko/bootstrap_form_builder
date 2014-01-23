@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="utf-8">
- <title>Пример 1 - Twitter bootstrap form builder</title>
+ <title>Пример 1 - Простые поля - Twitter bootstrap form builder</title>
  
  <!--Twitter bootstrap include-->
  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
@@ -36,6 +36,7 @@
 
     $form->add_input($form_factory->get_field('block_html', 'Контактная информация:'));
     $form->add_input($form_factory->get_field('email', 'email', 'Email')->set_required(true));
+    $form->add_input($form_factory->get_field('checkbox', 'subscribe', 'Подписаться на рассылку'));
     $form->add_input($form_factory->get_field('tel', 'tel', 'Номер телефона')->set_required(true));
     $form->add_input($form_factory->get_field('hidden', 'current_date')->set_value(date("Y-m-d")));
     $form->add_input($form_factory->get_field('text', 'city', 'Город проживания')->set_placeholder('Позже станет селектом'));
