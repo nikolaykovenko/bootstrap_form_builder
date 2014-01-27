@@ -27,12 +27,11 @@ class auto_loader {
   * * Метод для поиска файла-класса и его подключение
   * @param string $class класс для загрузки
   * @return bool
-  * @throws \Exception
   */
  protected function load_class($class)
  {
   $file = $this->base_dir.str_replace('\\', '/', $class).'.php';
-  if (file_exists($file)) require_once $file; else throw new \Exception('Оъект типа '.$class.' не существует');
+  if (file_exists($file)) require_once $file;
   return TRUE;
  }
 } 
