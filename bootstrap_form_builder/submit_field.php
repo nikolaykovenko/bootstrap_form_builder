@@ -33,6 +33,6 @@ class submit_field extends a_control_field {
 
  public function add_element_type_classes()
  {
-  $this->add_class('btn');
+  $this->add_class('btn btn-primary');
  }
 }

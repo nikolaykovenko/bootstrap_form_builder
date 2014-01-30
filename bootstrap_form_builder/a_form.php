@@ -110,21 +110,34 @@ abstract class a_form extends a_html_element {
 
  /**
   * Запуск валидации формы, в разработке
+  * @return boolean
   */
  public function check_validation()
  {
-  die();
+//  В разработке
+  return TRUE;
  }
 
  /**
   * Установка значений ряда элемнтов формы, в разработке.
   * Ключи массива - названия элементов, значения - их значения.
-  * @param assoc_array $inputs
+  * @param array|stdClass $inputs_values
   * @return $this
   */
- public function set_input_values($inputs)
+ public function set_input_values($inputs_values)
  {
-  die();
+  if (is_object($inputs_values)) $values = (array)$inputs_values; elseif (is_array($inputs_values)) $values = $inputs_values;
+  
+  if (!empty($values))
+  {
+   foreach ($this->get_inputs() as $input)
+   {
+    $name = $input->get_name();
+    if (array_key_exists($name, $values)) $input->set_value($values[$name]);
+   }
+  }
+  
+  return $this;
  }
 
  /**
