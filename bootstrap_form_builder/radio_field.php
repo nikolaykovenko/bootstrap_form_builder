@@ -17,7 +17,7 @@ class radio_field extends a_multi_field {
   */
  protected $inline = FALSE;
 
- public function render_field()
+ protected function render_field()
  {
   $result = '';
   

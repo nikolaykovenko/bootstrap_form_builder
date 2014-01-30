@@ -12,7 +12,7 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 class checkboxes_field extends radio_field {
- public function render_field()
+ protected function render_field()
  {
   $result = '';
 

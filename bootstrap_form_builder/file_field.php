@@ -22,7 +22,7 @@ class file_field extends a_standard_field {
   */
  protected $dir = '';
 
- public function render_field()
+ protected function render_field()
  {
   $value = $this->get_value();
   if (!empty($value))

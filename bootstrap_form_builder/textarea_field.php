@@ -12,7 +12,7 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 class textarea_field extends a_control_field {
- public function render_field()
+ protected function render_field()
  {
   return '<textarea'.$this->get_summary().' name="'.htmlspecialchars($this->get_name()).'" placeholder="'.htmlspecialchars($this->get_placeholder()).'">'.$this->get_value().'</textarea>';
  }

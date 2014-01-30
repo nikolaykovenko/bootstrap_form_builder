@@ -21,7 +21,7 @@ class button_field extends a_control_field {
   $this->add_element_type_classes();
  }
 
- public function render_field()
+ protected function render_field()
  {
   return '<input'.$this->get_summary().' type="'.$this->get_type().'" value="'.htmlspecialchars($this->get_value()).'">';
  }

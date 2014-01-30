@@ -47,4 +47,22 @@ class checkbox_field extends a_standard_field {
  {
   return $this->checked;
  }
-} 
+
+ public function set_value($value)
+ {
+  $this->set_checked((bool)$value);
+  return $this;
+ }
+
+ public function get_value()
+ {
+  return $this->get_checked();
+ }
+
+ 
+ 
+ protected function render_field()
+ {
+  return '<input'.$this->get_summary().' type="'.$this->get_type().'" name="'.htmlspecialchars($this->get_name()).'" value="1">';
+ }
+}

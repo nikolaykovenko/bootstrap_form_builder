@@ -130,10 +130,10 @@ abstract class a_form extends a_html_element {
   
   if (!empty($values))
   {
-   foreach ($this->get_inputs() as $input)
+   foreach ($this->get_inputs(TRUE) as $input)
    {
     $name = $input->get_name();
-    if (array_key_exists($name, $values)) $input->set_value($values[$name]);
+    $input->set_value(array_key_exists($name, $values) ? $values[$name] : null);
    }
   }
   
@@ -142,10 +142,20 @@ abstract class a_form extends a_html_element {
 
  /**
   * Получение массива элементов формы
+  * @param bool $include_append_fields параметр включения в массив дополнительных полей
+  * @return bool
   */
- public function get_inputs()
+ public function get_inputs($include_append_fields = FALSE)
  {
-  return $this->input_array;
+  $result = array();
+  
+  foreach ($this->input_array as $input)
+  {
+   $result[] = $input;
+   if ($include_append_fields) foreach ($input->get_append_fields() as $append_field) $result[] = $append_field;
+  }
+  
+  return $result;
  }
 
  public function render()

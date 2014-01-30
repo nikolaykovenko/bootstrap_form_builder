@@ -44,7 +44,7 @@ class image_file_field extends file_field {
   return $this;
  }
 
- public function render_field()
+ protected function render_field()
  {
   $value = $this->get_value();
   if (!empty($value))

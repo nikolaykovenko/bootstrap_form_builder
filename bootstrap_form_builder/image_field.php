@@ -18,7 +18,7 @@ class image_field extends a_field {
   $this->add_attr('alt', $alt);
  }
  
- public function render_field()
+ protected function render_field()
  {
   if (is_null($this->get_attr('alt'))) $this->add_attr('alt', '');
   return '<div><img'.$this->get_summary().' src="'.$this->get_value().'"></div>';

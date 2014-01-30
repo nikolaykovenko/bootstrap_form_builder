@@ -21,7 +21,7 @@ class html_field extends a_field {
   $this->add_element_type_classes();
  }
 
- public function render_field()
+ protected function render_field()
  {
   return '<p'.$this->get_summary().'>'.$this->get_value().'</p>';
  }

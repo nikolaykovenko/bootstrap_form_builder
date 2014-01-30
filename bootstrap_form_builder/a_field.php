@@ -149,6 +149,16 @@ abstract class a_field extends a_html_element {
   return $this;
  }
 
+ /**
+  * Возвращает массив дополнительных полей
+  * @return array
+  */
+ public function get_append_fields()
+ {
+  $result = array_merge($this->append_fields['before'], $this->append_fields['after']);
+  return $result;
+ }
+
 
  /**
   * Проводит рендеринг всех полей, которые добавлены перед или после блока
