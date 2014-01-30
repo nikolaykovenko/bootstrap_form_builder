@@ -33,6 +33,21 @@ abstract class a_field extends a_html_element {
   * @var bool вывод поля самостоятельно или рядом с label
   */
  protected $need_label = TRUE;
+
+ /**
+  * @var array дополнительные поля - перед или после полем
+  */
+ protected $append_fields = array('before'=>array(), 'after'=>array());
+
+
+ /**
+  * Генерирует html элемента вместе с добавлеными до и после элементами
+  * @return string
+  */
+ public function render()
+ {
+  return $this->render_append_fields('before').$this->render_field().$this->render_append_fields('after');
+ }
  
  /**
   * Установка значения поля
@@ -110,6 +125,60 @@ abstract class a_field extends a_html_element {
    $this->need_label = (bool)$value;
    return $this;
   }
-  
  }
+
+ /**
+  * Добавляет дополнительное поля для вывода после основного поля
+  * @param a_field $field
+  * @return $this
+  */
+ public function add_after(a_field $field)
+ {
+  $this->append_fields['after'][] = $field;
+  return $this;
+ }
+
+ /**
+  * Добавляет дополнительное поля для вывода перед основным полем
+  * @param a_field $field
+  * @return $this
+  */
+ public function add_before(a_field $field)
+ {
+  $this->append_fields['before'][] = $field;
+  return $this;
+ }
+
+
+ /**
+  * Проводит рендеринг всех полей, которые добавлены перед или после блока
+  * @param string $fields_block - before|after
+  * @return string
+  */
+ protected function render_append_fields($fields_block)
+ {
+  $result = array();
+  if (array_key_exists($fields_block, $this->append_fields))
+  {
+   foreach ($this->append_fields[$fields_block] as $field) $result[] = $field->render().' ';
+  }
+  
+  $result = implode(' ', $result);
+  if (!empty($result))
+  {
+   switch ($fields_block)
+   {
+    case 'before': $result .= ' '; break;
+    case 'after': $result = ' '.$result; break;
+   }
+  }
+  
+  return $result;
+ }
+
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
+ abstract protected function render_field();
 }

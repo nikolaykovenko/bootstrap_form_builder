@@ -22,18 +22,18 @@ class file_field extends a_standard_field {
   */
  protected $dir = '';
 
- public function render()
+ public function render_field()
  {
   $value = $this->get_value();
   if (!empty($value))
   {
    $checkbox = new checkbox_field($this->get_name().'_delete');
-   $field = new html_field('['.$this->get_filename().'] '.$checkbox->add_attr('title', 'Удалить')->render());
-   $result = ' '.$field->render();
+   $field = new html_field('['.$this->get_filename().'] '.$checkbox->add_attr('title', 'Удалить')->render_field());
+   $result = ' '.$field->render_field();
   }
   else $result = '';
   
-  return parent::render().$result;
+  return parent::render_field().$result;
  }
  
  public function get_type()

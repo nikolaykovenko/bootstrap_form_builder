@@ -15,7 +15,7 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 abstract class a_standard_field extends a_control_field {
- public function render()
+ public function render_field()
  {
   return '<input'.$this->get_summary().' type="'.$this->get_type().'" name="'.htmlspecialchars($this->get_name()).'" placeholder="'.htmlspecialchars($this->get_placeholder()).'" value="'.htmlspecialchars($this->get_value()).'">';
  }

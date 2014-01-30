@@ -17,7 +17,7 @@ class select_field extends a_multi_field {
   */
  protected $multiple = FALSE;
  
- public function render()
+ public function render_field()
  {
   $result = '';
   foreach ($this->get_items() as $value => $caption) $result .= '<option value="'.$value.'"'.($this->is_selected($value) ? ' selected' : '').'>'.$caption.'</option>';

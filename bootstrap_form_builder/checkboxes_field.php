@@ -12,7 +12,7 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 class checkboxes_field extends radio_field {
- public function render()
+ public function render_field()
  {
   $result = '';
 
@@ -22,7 +22,7 @@ class checkboxes_field extends radio_field {
    $checkbox->set_checked($this->is_selected($value));
    
    $result .= '<label'.$this->get_classes_html().'>
-                 '.$checkbox->render().' '.$checkbox->get_label().'
+                 '.$checkbox->render_field().' '.$checkbox->get_label().'
                </label>';
   }
 

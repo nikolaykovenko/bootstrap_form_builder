@@ -44,18 +44,18 @@ class image_file_field extends file_field {
   return $this;
  }
 
- public function render()
+ public function render_field()
  {
   $value = $this->get_value();
   if (!empty($value))
   {
 //   Нужно доработать ресайз
    $image = new image_field($this->get_dir().$value);
-   $result = ' '.$image->render();
+   $result = ' '.$image->render_field();
   }
   else $result = '';
   
-  return parent::render().$result;
+  return parent::render_field().$result;
  }
 
  /**
