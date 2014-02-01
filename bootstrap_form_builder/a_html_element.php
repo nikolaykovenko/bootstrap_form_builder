@@ -28,6 +28,11 @@ abstract class a_html_element {
   */
  protected $attr_array = array();
 
+ /**
+  * @var CI_Controller
+  */
+ protected $CI;
+
 
  /**
   * Добавляет элементу новый CSS-класс
@@ -94,6 +99,16 @@ abstract class a_html_element {
   return $this->id;
  }
 
+ /**
+  * Возвращает объект контроллера Codegniter, в случае, если он существует
+  * @return CI_Controller|null
+  */
+ public function get_CI()
+ {
+  if ($this->is_CI() and empty($this->CI)) $this->CI = &get_instance();
+  return $this->CI;
+ }
+
 
  /**
   * Возвращает полную строку с id, классами и атрибутами элемента
@@ -135,6 +150,15 @@ abstract class a_html_element {
   $result = implode(' ', $this->class_array);
   if (!empty($result)) $result = ' class="'.htmlspecialchars($result).'"';
   return $result;
+ }
+
+ /**
+  * Проверяет, запущена ли библиотека под управлением фреймворка CI
+  * @return bool
+  */
+ protected function is_CI()
+ {
+  return class_exists('CI_Controller');
  }
 
  /**

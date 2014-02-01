@@ -114,8 +114,15 @@ abstract class a_form extends a_html_element {
   */
  public function check_validation()
  {
-//  В разработке
-  return TRUE;
+  if (!$this->is_CI()) return TRUE;
+  
+  foreach ($this->get_inputs(TRUE) as $input)
+  {
+   $rules = $input->get_validation_rules();
+   if (!empty($rules)) $this->get_CI()->form_validation->set_rules($input->get_name(), strtolower($input->get_label(FALSE)), $rules);
+  }
+  
+  return $this->get_CI()->form_validation->run();
  }
 
  /**

@@ -20,6 +20,11 @@ abstract class a_field extends a_html_element {
  protected $validation_rules = array();
 
  /**
+  * @var string Имя поля
+  */
+ protected $name;
+
+ /**
   * @var string значение поля
   */
  protected $value;
@@ -47,6 +52,26 @@ abstract class a_field extends a_html_element {
  public function render()
  {
   return $this->render_append_fields('before').$this->render_field().$this->render_append_fields('after');
+ }
+ 
+ /**
+  * Устанавливает имя поля
+  * @param string $name
+  * @return $this
+  */
+ public function set_name($name)
+ {
+  $this->name = $name;
+  return $this;
+ }
+
+ /**
+  * Возвращает имя поля
+  * @return string
+  */
+ public function get_name()
+ {
+  return (string)$this->name;
  }
  
  /**
@@ -96,7 +121,26 @@ abstract class a_field extends a_html_element {
   */
  public function add_validation_rule($rule)
  {
-  if (!empty($rule) and !in_array($rule, $this->validation_rules)) $this->validation_rules[] = $rule;
+  if (!empty($rule))
+  {
+   $array = explode('|', $rule);
+   foreach ($array as $rule) if (!in_array($rule, $this->validation_rules)) $this->validation_rules[] = $rule;
+  } 
+  return $this;
+ }
+
+ /**
+  * Удаляет правила валидации
+  * @param string $rule
+  * @return $this
+  */
+ public function remove_validation_rule($rule)
+ {
+  if (!empty($rule))
+  {
+   $array = explode('|', $rule);
+   foreach ($array as $rule) if (in_array($rule, $this->validation_rules)) unset($this->validation_rules[$rule]); 
+  }
   return $this;
  }
 
@@ -104,9 +148,9 @@ abstract class a_field extends a_html_element {
   * Получение правил валидации поля
   * @return string
   */
- public function get_validation_ruled()
+ public function get_validation_rules()
  {
-  return implode(',', $this->validation_rules);
+  return implode('|', $this->validation_rules);
  }
 
  /**
@@ -158,6 +202,19 @@ abstract class a_field extends a_html_element {
   $result = array_merge($this->append_fields['before'], $this->append_fields['after']);
   return $result;
  }
+
+ public function get_validation_message()
+ {
+  if ($this->is_CI())
+  {
+   $message = form_error($this->get_name());
+   if (!empty($message)) $message = '<div class="alert alert-danger">'.$message.'</div>';
+   
+   return $message;
+  }
+  return '';
+ }
+ 
 
 
  /**

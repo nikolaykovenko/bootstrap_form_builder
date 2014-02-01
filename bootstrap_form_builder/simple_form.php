@@ -23,10 +23,11 @@ class simple_form extends a_form {
   if ($input->need_label())
   {
    $id = $input->get_id();
+   $validation_message = $input->get_validation_message();
 
-   $result = '<div class="form-group">
+   $result = '<div class="form-group'.(!empty($validation_message) ? ' has-error' : '').'">
                 <label'.(!empty($id) ? ' for="'.$id.'"' : '').'>'.$input->get_label().'</label>
-                '.$result.'
+                '.$result.$validation_message.'
               </div>';
   }
 

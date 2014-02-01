@@ -24,10 +24,12 @@ class horizontal_form extends a_form {
   if ($input->need_label())
   {
    $id = $input->get_id();
+   $validation_message = $input->get_validation_message();
 
-   $result = '<div class="form-group">
+   $result = '<div class="form-group'.(!empty($validation_message) ? ' has-error' : '').'">
                <label'.(!empty($id) ? ' for="'.$id.'"' : '').' class="col-sm-2 control-label">'.$input->get_label().'</label>
                 <div class="col-sm-10">'.$result.'</div>
+                '.$validation_message.'
               </div>';
   }
 
