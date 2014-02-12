@@ -72,6 +72,25 @@ abstract class a_multi_field extends a_control_field {
  }
 
  /**
+  * Возвращает массив элементов
+  * @return array
+  */
+ public function get_items()
+ {
+  return $this->items_array;
+ }
+
+ /**
+  * Возвращает caption элемента по значению
+  * @param string $value
+  * @return string|null
+  */
+ public function get_item_caption($value)
+ {
+  if (array_key_exists($value, $this->items_array)) return str_replace("&nbsp;", '', $this->items_array[$value]); else return NULL;
+ }
+
+ /**
   * Помечает элементы как выбранные
   * @param array|string $selected
   * @return $this
@@ -103,14 +122,6 @@ abstract class a_multi_field extends a_control_field {
  }
 
 
- /**
-  * Возвращает массив элементов
-  * @return array
-  */
- protected function get_items()
- {
-  return $this->items_array;
- }
 
  /**
   * Проверка, выбран ли элемент $value
