@@ -56,4 +56,10 @@ class select_field extends a_multi_field {
  {
   return $this->multiple;
  }
+
+ public function set_value($value)
+ {
+  $this->add_selected_values($value);
+  return parent::set_value($value);
+ }
 }

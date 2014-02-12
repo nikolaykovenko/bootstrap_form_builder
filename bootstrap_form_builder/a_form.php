@@ -126,7 +126,7 @@ abstract class a_form extends a_html_element {
  }
 
  /**
-  * Установка значений ряда элемнтов формы, в разработке.
+  * Установка значений ряда элемнтов формы
   * Ключи массива - названия элементов, значения - их значения.
   * @param array|stdClass $inputs_values
   * @return $this
