@@ -165,6 +165,27 @@ abstract class a_form extends a_html_element {
   return $result;
  }
 
+ /**
+  * Возвращает input из переданным $name
+  * @param string $name
+  * @return a_field|null
+  */
+ public function get_input_by_name($name)
+ {
+  $result = NULL;
+  $i = 0;
+  $inputs = $this->get_inputs();
+  $length = count($inputs);
+  
+  while (is_null($result) and $i < $length)
+  {
+   if ($inputs[$i]->get_name() == $name) $result = $inputs[$i];
+   $i++;
+  }
+  
+  return $result;
+ }
+
  public function render()
  {
   $result = '<form'.$this->get_summary().' role="form">';
