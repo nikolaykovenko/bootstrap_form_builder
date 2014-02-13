@@ -99,8 +99,7 @@ abstract class a_multi_field extends a_control_field {
  {
   if (!empty($selected))
   {
-   if (is_string($selected)) $this->select_value($selected);
-   elseif (is_array($selected)) foreach ($selected as $value) $this->select_value($value);
+   if (is_array($selected)) foreach ($selected as $value) $this->select_value($value); else $this->select_value($selected);
   }
   
   return $this;
