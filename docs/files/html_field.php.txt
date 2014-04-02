@@ -1,0 +1,43 @@
+<?php
+/**
+ * Статический текст
+ * @package bootstrap_form_builder
+ * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
+ * @date 16.01.14
+ */
+
+namespace bootstrap_form_builder;
+
+/**
+ * Статический текст
+ * @package bootstrap_form_builder
+ */
+class html_field extends a_field {
+ /**
+  * Конструктор
+  * @param string $value значение поля
+  */
+ public function __construct($value)
+ {
+  $this->set_value($value);
+  $this->add_element_type_classes();
+ }
+
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
+ protected function render_field()
+ {
+  return '<p'.$this->get_summary().'>'.$this->get_value().'</p>';
+ }
+
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
+ protected function add_element_type_classes()
+ {
+  $this->add_class('form-control-static');
+ }
+} 

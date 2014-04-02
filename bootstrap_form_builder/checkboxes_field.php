@@ -1,5 +1,6 @@
 <?php
 /**
+ * Блок чекбоксов
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 23.01.14
@@ -12,6 +13,11 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 class checkboxes_field extends radio_field {
+
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   $result = '';
@@ -29,17 +35,30 @@ class checkboxes_field extends radio_field {
   return '<div>'.$result.'</div>';
  }
 
+ /**
+  * Возвращает тип поля
+  * @return string
+  */
  public function get_type()
  {
   return 'checkboxes';
  }
 
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
  public function add_element_type_classes()
  {
   $this->add_class('checkbox');
   return TRUE;
  }
 
+ /**
+  * Устанавливает значение inline
+  * @param boolean $inline
+  * @return $this
+  */
  public function set_inline($inline)
  {
   $this->inline = (boolean)$inline;

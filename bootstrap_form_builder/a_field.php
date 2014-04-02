@@ -1,5 +1,6 @@
 <?php
 /**
+ * Поле для загрузки файла.
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 11.01.14
@@ -203,6 +204,10 @@ abstract class a_field extends a_html_element {
   return $result;
  }
 
+ /**
+  * Возвращает сообщение об ошибках валидаци
+  * @return string
+  */
  public function get_validation_message()
  {
   if ($this->is_CI())

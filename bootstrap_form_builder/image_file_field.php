@@ -1,5 +1,6 @@
 <?php
 /**
+ * Поля для загрузки изображение
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 21.01.14
@@ -13,12 +14,12 @@ namespace bootstrap_form_builder;
  */
 class image_file_field extends file_field {
  /**
-  * @var int
+  * @var int ширина изображения
   */
  protected $width = 0;
 
  /**
-  * @var int
+  * @var int высота изображения 
   */
  protected $height = 0;
 
@@ -44,6 +45,10 @@ class image_file_field extends file_field {
   return $this;
  }
 
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   $value = $this->get_value();

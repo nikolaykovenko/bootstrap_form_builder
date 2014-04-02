@@ -1,5 +1,6 @@
 <?php
 /**
+ * Форма
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 11.01.14
@@ -21,6 +22,7 @@ abstract class a_form extends a_html_element {
  protected $input_array = array();
 
  /**
+  * Конструктор
   * @param string $action строка action формы. По умолчанию null - поточная страница
   * @param string $method GET or POST
   * @param string $name название формы. По умолчанию main 
@@ -186,6 +188,10 @@ abstract class a_form extends a_html_element {
   return $result;
  }
 
+ /**
+  * Генерирует html элемента
+  * @return string
+  */
  public function render()
  {
   $result = '<form'.$this->get_summary().' role="form">';

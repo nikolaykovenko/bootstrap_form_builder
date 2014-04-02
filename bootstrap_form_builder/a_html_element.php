@@ -1,5 +1,6 @@
 <?php
 /**
+ * Базовый HTML элемент.
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 16.01.14
@@ -29,7 +30,7 @@ abstract class a_html_element {
  protected $attr_array = array();
 
  /**
-  * @var CI_Controller
+  * @var CI_Controller экземпляр CodeIgniter, если библиотека запущена из фреймворка
   */
  protected $CI;
 
