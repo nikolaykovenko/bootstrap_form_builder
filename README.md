@@ -1,4 +1,10 @@
-bootstrap_form_builder
-======================
+#Bootstrap form builder Alpha 0.1
 
-Twitter bootstrap 3 php form builder
+PHP библиотека для быстрого формирования HTML форм на основе Twitter Bootstrap 3.
+
+Проект находится на стадии разработки и тесторования, пожалуйста, не используйте его в реальных проектах.
+
+##Дополнительные сведения:
+
+* Структура проекта - [UML диаграмма классов](https://www.lucidchart.com/documents/edit/4ce7-7598-52a174b3-9f31-7b360a00d8b3)
+* Документация находится в папке docs
