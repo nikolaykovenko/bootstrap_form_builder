@@ -72,6 +72,22 @@ abstract class a_multi_field extends a_control_field {
  }
 
  /**
+  * Удаляет переданные значения со списка
+  * @param array|string $items
+  * @return $this
+  */
+ public function remove_items($items)
+ {
+  if (is_array(($items)))
+  {
+   foreach ($items as $item) $this->remove_item($item);
+  }
+  else $this->remove_item($items);
+  
+  return $this;
+ }
+
+ /**
   * Возвращает массив элементов
   * @return array
   */
@@ -106,7 +122,7 @@ abstract class a_multi_field extends a_control_field {
  }
 
  /**
-  * Удаляет переданные элементы
+  * Помечает переданные элементы как невыбранные
   * @param array|string $selected
   * @return $this
   */
@@ -145,6 +161,21 @@ abstract class a_multi_field extends a_control_field {
  }
 
  /**
+  * Удаляет элемент списка по значению
+  * @param $value
+  * @return bool
+  */
+ private function remove_item($value)
+ {
+  if (!empty($value) and array_key_exists($value, $this->items_array))
+  {
+   unset($this->items_array[$value]);
+   return TRUE;
+  }
+  return FALSE;
+ }
+
+ /**
   * Помечает элемент $value как выбраный
   * @param string $value
   * @return $this
@@ -156,7 +187,7 @@ abstract class a_multi_field extends a_control_field {
  }
 
  /**
-  * Помечает элемент $value как выбраный
+  * Помечает элемент $value как невыбраный
   * @param string $value
   * @return $this
   */
