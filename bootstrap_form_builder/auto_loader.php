@@ -1,5 +1,6 @@
 <?php
 /**
+ * Автоматическая загрузка файлов-классов
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 23.01.14
@@ -17,6 +18,9 @@ class auto_loader {
   */
  protected $base_dir;
  
+ /**
+  * Конструктор
+  */
  public function __construct()
  {
   $this->base_dir = __DIR__.'/../';

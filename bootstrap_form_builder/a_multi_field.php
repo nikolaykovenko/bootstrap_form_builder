@@ -1,5 +1,6 @@
 <?php
 /**
+ * Класс для мульти-инпутов. (select, checkboxes, radio-buttons)
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 21.01.14
@@ -22,6 +23,13 @@ abstract class a_multi_field extends a_control_field {
   */
  protected $selected_values = array();
  
+ /**
+  * Конструктор
+  * @param string $name имя поля
+  * @param null $label label поля
+  * @param array|string $items_array значение поля @see a_multi_field::add_items
+  * @param array $selected_values флаг необходимости заполнения поля
+  */
  public function __construct($name = null, $label = null, $items_array = array(), $selected_values = array())
  {
   parent::__construct($name, $label);

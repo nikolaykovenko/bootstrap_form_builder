@@ -1,5 +1,6 @@
 <?php
 /**
+ * Поле для загрузки файла.
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 21.01.14
@@ -22,6 +23,10 @@ class file_field extends a_standard_field {
   */
  protected $dir = '';
 
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   $value = $this->get_value();
@@ -36,11 +41,19 @@ class file_field extends a_standard_field {
   return parent::render_field().$result;
  }
  
+ /**
+  * Возвращает тип поля
+  * @return string
+  */
  public function get_type()
  {
   return 'file';
  }
 
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
  public function add_element_type_classes()
  {
   return TRUE;

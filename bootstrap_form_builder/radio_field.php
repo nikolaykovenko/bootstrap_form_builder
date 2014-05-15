@@ -1,5 +1,6 @@
 <?php
 /**
+ * Блок полей radio
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 22.01.14
@@ -17,6 +18,10 @@ class radio_field extends a_multi_field {
   */
  protected $inline = FALSE;
 
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   $result = '';
@@ -33,11 +38,19 @@ class radio_field extends a_multi_field {
   return '<div>'.$result.'</div>';
  }
 
+ /**
+  * Возвращает тип поля
+  * @return string
+  */
  public function get_type()
  {
   return 'radio';
  }
 
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
  public function add_element_type_classes()
  {
   $this->add_class('radio');

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Чекбокс, нужна доработке рендеринга
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 17.01.14
@@ -17,11 +18,19 @@ class checkbox_field extends a_standard_field {
   */
  protected $checked = FALSE;
  
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
  public function add_element_type_classes()
  {
   return TRUE;
  }
  
+ /**
+  * Возвращает тип поля
+  * @return string
+  */
  public function get_type()
  {
   return 'checkbox';
@@ -48,12 +57,21 @@ class checkbox_field extends a_standard_field {
   return $this->checked;
  }
 
+ /**
+  * Установка значения поля
+  * @param string $value
+  * @return $this
+  */
  public function set_value($value)
  {
   $this->set_checked((bool)$value);
   return $this;
  }
 
+ /**
+  * Получение значения поля
+  * @return string
+  */
  public function get_value()
  {
   return $this->get_checked();
@@ -61,6 +79,10 @@ class checkbox_field extends a_standard_field {
 
  
  
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   return '<input'.$this->get_summary().' type="'.$this->get_type().'" name="'.htmlspecialchars($this->get_name()).'" value="1">';

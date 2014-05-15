@@ -1,5 +1,6 @@
 <?php
 /**
+ * Поле select
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 22.01.14
@@ -17,6 +18,10 @@ class select_field extends a_multi_field {
   */
  protected $multiple = FALSE;
  
+ /**
+  * Генерирует html непосредственно элемента
+  * @return string
+  */
  protected function render_field()
  {
   $result = '';
@@ -25,14 +30,23 @@ class select_field extends a_multi_field {
   return '<select name="'.htmlspecialchars($this->get_name()).'"'.$this->get_summary().'>'.$result.'</select>';
  }
  
+ /**
+  * Возвращает тип поля
+  * @return string
+  */
  public function get_type()
  {
   return 'select';
  }
 
+ /**
+  * Добавляет элементу служебные классы, определяющие его вид.
+  * @return true
+  */
  public function add_element_type_classes()
  {
   $this->add_class('form-control');
+  return TRUE;
  }
 
  /**
@@ -57,6 +71,11 @@ class select_field extends a_multi_field {
   return $this->multiple;
  }
 
+ /**
+  * Установка значения поля
+  * @param string $value
+  * @return $this
+  */
  public function set_value($value)
  {
   $this->add_selected_values($value);

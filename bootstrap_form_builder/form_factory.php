@@ -1,5 +1,6 @@
 <?php
 /**
+ * Фабрика элементов
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 10.01.14
@@ -15,6 +16,10 @@ namespace bootstrap_form_builder;
  * @package bootstrap_form_builder
  */
 class form_factory {
+
+ /**
+  * Конструктор
+  */
  public function __construct()
  {
   require_once 'auto_loader.php';

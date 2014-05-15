@@ -1,5 +1,6 @@
 <?php
 /**
+ * Более сложные поля формы
  * @package bootstrap_form_builder
  * @author Nikolay Kovenko <nikolay.kovenko@gmail.com>
  * @date 16.01.14
@@ -28,6 +29,7 @@ abstract class a_control_field extends a_field {
  protected $place_holder;
 
  /**
+  * Конструктор
   * @param string $name имя поля
   * @param null $label label поля
   * @param null $value значение поля
