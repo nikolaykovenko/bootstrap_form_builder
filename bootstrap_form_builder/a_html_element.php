@@ -81,6 +81,17 @@ abstract class a_html_element {
  }
 
  /**
+  * Возвращает значение переданого в параметре атрибута
+  * @param string $attr
+  * @return string|null
+  */
+ public function get_attr($attr)
+ {
+  if (array_key_exists($attr, $this->attr_array)) return $this->attr_array[$attr]; else return null;
+ }
+
+
+ /**
   * Установка параметра id элемента
   * @param string $id
   * @return $this
@@ -118,16 +129,6 @@ abstract class a_html_element {
  protected function get_summary()
  {
   return $this->get_full_id().$this->get_classes_html().$this->get_attrs_html();
- }
-
- /**
-  * Возвращает значение переданого в параметре атрибута
-  * @param string $attr
-  * @return string|null
-  */
- protected function get_attr($attr)
- {
-  if (array_key_exists($attr, $this->attr_array)) return $this->attr_array[$attr]; else return null;
  }
  
  
