@@ -21,6 +21,7 @@ class image_field extends a_field {
   */
  public function __construct($src, $alt = '')
  {
+  if (mb_substr($src, 0, 1) != '/') $src = '/'.$src;
   $this->set_value($src);
   $this->add_attr('alt', $alt);
  }

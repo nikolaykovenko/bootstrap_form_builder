@@ -54,8 +54,10 @@ class image_file_field extends file_field {
   $value = $this->get_value();
   if (!empty($value))
   {
-//   Нужно доработать ресайз
-   $image = new image_field($this->get_dir().$value);
+   $image_path = $this->get_dir().$value;
+   if ($this->get_CI() !== FALSE and $this->get_width() > 0 and $this->get_height() > 0) $image_path = '/image?file='.$image_path.'&amp;width='.$this->get_width().'&amp;height='.$this->get_height();
+   
+   $image = new image_field($image_path);
    $result = ' '.$image->render_field();
   }
   else $result = '';

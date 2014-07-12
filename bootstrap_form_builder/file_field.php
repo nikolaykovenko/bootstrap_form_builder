@@ -71,7 +71,7 @@ class file_field extends a_standard_field {
  {
   if (empty($filename))
   {
-   if (is_array($_FILES[$this->get_name()])) $filename = $_FILES[$this->get_name()]['name']; else $filename = $this->get_value();
+   if (array_key_exists($this->get_name(), $_FILES) and is_array($_FILES[$this->get_name()])) $filename = $_FILES[$this->get_name()]['name']; else $filename = $this->get_value();
   }
   
   $this->filename = (string)$filename;
