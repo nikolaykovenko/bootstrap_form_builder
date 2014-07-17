@@ -81,4 +81,18 @@ class select_field extends a_multi_field {
   $this->add_selected_values($value);
   return parent::set_value($value);
  }
+
+
+ /**
+  * Помечает элемент $value как выбраный
+  * @param string $value
+  * @return $this
+  */
+ protected function select_value($value)
+ {
+  if ($this->get_multiple()) return parent::select_value($value);
+  
+  $this->selected_values = array($value);
+  return $this;
+ }
 }

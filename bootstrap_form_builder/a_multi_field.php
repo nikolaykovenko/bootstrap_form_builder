@@ -188,7 +188,7 @@ abstract class a_multi_field extends a_control_field {
   * @param string $value
   * @return $this
   */
- private function select_value($value)
+ protected function select_value($value)
  {
   if (!empty($value) and in_array($value, $this->selected_values) === FALSE) $this->selected_values[] = $value;
   return $this;
